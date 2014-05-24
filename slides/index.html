@@ -239,12 +239,25 @@
       </div>
     </div></section>
 
-    <section id="demo-cover" class="slide cover w" ><div>
-        <h2>Demo:<br>Survival Analysis</h2>
+    <section id="topic" class="slide"><div>
+      <h2>Topics</h2>
+      <ul>
+        <li>Why interactive?</li>
+        <li>How interactive in R?</li>
+        <li><i class="red">SVG</i> intro</li>
+        <li>R packages <i class="red">grid</i> intro</li>
+        <li>Architecture of R graphics system intro</li>
+        <li><i class="red">gridSVG</i> intro</li>
+        <li>Summary and limitation</li>
+      </ul>
+    </div></section>
+
+    <section id="why-cover" class="slide cover w" ><div>
+        <h2>Why and how?</h2>
         <img src="pics/mid.jpg" alt="">
       </div>
       <style>
-        #demo-cover h2 {
+        #why-cover h2 {
           margin: 0px 0 0px;
           color: #D91A3C;
           text-align: left;
@@ -252,20 +265,96 @@
           line-height: 1.2em;
           opacity: 0.8;
           position: absolute;
-          top: 90px;
+          top: 150px;
           left: 80px;
         }
       </style>
     </section>
 
+    <section id="move-from-publication" class="slide twocol"><div>
+      <h2>From publication to <i class="red">manipulation</i></h2>
+      <div class="left">
+        <!-- scatter plot -->
+      </div>
+      <div class="right">
+        <!-- tooltip label -->
+      </div>
+    </div></section>
+
+    <section id="why-interactive" class="slide"><div>
+      <h2><span class="red">Why</span> interactive?</h2>
+      <ul>
+        <li class="next">Re-train your model (change the parameters): <i class="blue">Shiny</i></li>
+        <li class="next">Provide more details of your data: <span class="blue">tooltip</span></li>
+        <li class="next">Data are collected in <span class="blue">real time</span></li>
+        <li class="next">Provide different <span class="blue">view point</span> of your data</li>
+        <li class="next">We <i>just</i> want to be <span class="blue">fancy</span></li>
+      </ul>
+      <p class="next">With today's method, we can reveal more details, provide different view points, and can be fancier :)</p>
+    </div></section>
+
+    <section id="how-difficulty" class="slide"><div>
+      <h2><span class="red">How</span> interactive?</h2>
+      <ul>
+        <li>In the past, one might first think of using GUI framework (QT, Gtk): <i class="blue">iPlot</i></li>
+        <li class="next">Real pain for developers,
+          <ul>
+            <li>inexperience in GUI application devel</li>
+            <li>embedded other non-interactive information is hard</li>
+          </ul>
+        </li>
+        <li class="next">Also a pain for users,
+          <ul>
+            <li>no need for another GUI application</li>
+            <li>users now mainly from internet</li>
+          </ul>
+        </li>
+      </ul>
+    </div></section>
+
+    <section id="browser-world" class="slide"><div>
+      <p>Internet browsers dominate the whole world :)</p>
+      <!-- img here -->
+    </div></section>
+
+    <section id="web-world" class="slide"><div>
+      <p>HTML5/CSS3/Javascript/SVG dominate the front-end world :)</p>
+      <!-- img here -->
+    </div></section>
+
+    <section id="how-revisit" class="slide"><div>
+      <h2><span class="red">How</span> interactive in R? (revisit)</h2>
+      <ul>
+        <li>Put everything on web (in the cloud)</li>
+        <li>Mainly two ways:
+          <ul>
+            <li>Usual R plots → parse R plot object → output SVG → add interactivity on SVG</li>
+            <li>Use R lang to generate SVG directly</li>
+          </ul>
+        </li>
+      </ul>
+      <p>We take the <span class="blue">first way</span> in this talk.</p>
+    </div></section>
+
+    <section id="why-svg" class="slide"><div>
+      <h2>Why SVG?</h2>
+      <figure>
+        <blockquote>
+          <p>Scalable Vector Graphics (SVG) is an XML markup language for <span class="blue">describing two-dimensional vector graphics</span>.</p>
+        </blockquote>
+        <figcaption>Mozilla Developer Network</figcaption>
+      </figure>
+      <ul>
+        <li>Web standard widely supported by both desktop and mobile browsers</li>
+        <li>Manipulate SVG elements by javascript and CSS</li>
+        <li>Support sufficient annimations</li>
+      </ul>
+    </div></section>
+
+
     <!-- TODO Draft -->
     <!--
-    - Interactive Vis and Do it in R
-    - Why interactive? (need a story here)
-      - Through GUI framework (QT, GTK, ...) is a pain for developer
-      - is also a pain for user
-      - HTML5 CSS3 (maybe no JS at all)
-    - How interactive?
+      - How interactive in R?
       - R plot object to SVG
       - SVG to interactive SVG
         - SVG is well cross-platform
@@ -278,13 +367,13 @@
     - SVG interactive
       - make SVG interactive
       - embed interactive SVG plots
+    - R graphics arch
     - grid intro
       - basic elements
       - viewport manipulation
-    - gridSVG intro
+   - gridSVG intro
       - how it works
       - limitation
-    - R graphics arch
     - Summary
       - Why in R?
         - comfort zone
