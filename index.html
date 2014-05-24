@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Interactive Visualization with R, Liang Bo Wang</title>
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Icon -->
+    <link href="pics/favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!-- MathJax -->
+    <!-- CSS Stle -->
+    <link rel="stylesheet" href="lib/shower/themes/ribbon/styles/screen.css">
+    <link rel="stylesheet" href="lib/highlight/styles/tomorrow.css" type="text/css"/>
+    <style type="text/css" media="all">
+
+      /* clean table */
+    table.clean td img {
+      vertical-align: top;
+    }
+    table.clean td {
+      background: none;
+    }
+
+    h2.tighter {
+      margin: -40px 0 20px;
+    }
+
+    /* tighter paragraph */
+    p.tighter {
+      margin: 0 0 25px;
+    }
+
+    /* tighter code */
+    pre.tighter {
+      margin: 0 0 20px;
+    }
+
+    pre.full-page {
+      margin: -60px 0 0;
+    }
+    /* inline */
+    p.inline {
+      margin-bottom: 0px;
+    }
+
+    ul.tighter {
+      margin-bottom: 25px;
+    }
+
+    /* smaller code */
+    pre.small code {
+      font-size: 16px;
+      line-height: 2em;
+    }
+
+    .grey {
+      color: #BBB;
+    }
+    .red {
+      color: #D91A3C;
+    }
+    .blue {
+      color: #0376A6;
+    }
+
+    /* source link */
+    div.ref-img p.src-link {
+      position: relative;
+      font-size: 14px;
+      text-align: right;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    /* two column slides */
+    section.slide.twocol div.left {
+      width: 50%;
+      float: left;
+    }
+    section.slide.twocol div.right {
+      width: 50%;
+      float: right;
+    }
+
+    section.slide.twocol-ll div.left {
+      width: 65%;
+      float: left;
+    }
+    section.slide.twocol-ll div.right {
+      width: 35%;
+      float: right;
+    }
+
+    section.slide.twocol-lr div.left {
+      width: 35%;
+      float: left;
+    }
+    section.slide.twocol-lr div.right {
+      width: 65%;
+      float: right;
+    }
+    </style>
+
+  </head>
+  <body class="list">
+    <!-- Header in overview -->
+    <header class="caption">
+      <div style="overflow: auto; vertical-align: middle; position: relative;">
+        <img style="float: left; padding-right: 30px; width: 150px;" src="pics/twR_logo.png" alt="">
+        <div style="">
+          <h1>
+            Interactive Visualization with R
+          </h1>
+          <p style="line-height: 32px; padding-top:15px;">王亮博（亮亮）2014-05-25</p>
+          <p style="line-height: 32px;">From Taiwan R User Group, more info on <a href="http://www.meetup.com/Taiwan-R/" target="_blank">Meetup</a>.</p>
+        </div>
+      </div>
+    </header>
+    <!-- START OF SLIDE CONTENT -->
+
+    <!-- Cover slide -->
+    <section id="cover" class="slide cover w"><div>
+        <h3>7th China R Conf (Beijing), 2014-05-25</h3>
+        <h2>Interactive Visualization with R</h2>
+        <p>
+          <a href="http://about.me/lbwang" target="_blank">王亮博 (亮亮)</a><br>shared under CC 4.0 BY
+        </p>
+        <p id="usage-instr">
+          <kbd>Esc</kbd> to overview <br />
+          <kbd>←</kbd> <kbd>→</kbd> to navigate
+        </p>
+        <img src="pics/cover.jpg" alt="">
+      </div>
+      <style>
+        #cover h2 {
+          margin: 20px 0 0px;
+          color: #D91A3C;
+          text-align: center;
+          font-size: 84px;
+          line-height: 1.2em;
+          opacity: 0.8;
+        }
+        #cover h3 {
+          margin: -80px 0 0px;
+          color: #0376A6;
+          text-align: center;
+          font-size: 32px;
+          opacity: 0.3;
+        }
+        #cover p {
+          margin: 30px 0 0;
+          text-align: center;
+          color: #FFFA20;
+          font-size: 32px;
+          opacity: 0.8;
+        }
+        #cover p a {
+          color: #FFFA20;
+          background: linear-gradient(to top, #FFFA20, #FFFA20 0.09em, transparent 0.09em, transparent) repeat-x scroll 0% 0% transparent;
+        }
+        #usage-instr {
+          position: absolute;
+          text-align: right;
+          right: 30px;
+          bottom: 20px;
+        }
+        #usage-instr kbd {
+          opacity: 0.8;
+          color: #D91A3C;
+        }
+        #cover .src-link {
+          position: absolute;
+          font-size: 14px;
+          text-align: right;
+          bottom: 10px;
+          right: 10px;
+        }
+        #cover img {
+          opacity: 1;
+        }
+      </style>
+    </section>
+
+    <section id="qrcode" class="slide"><div>
+      <p class="url">Online slide on <a href="http://ccwang002.gitcafe.com/ChinaRConf-Interactive-Vis/">http://ccwang002.gitcafe.com/ChinaRConf-Interactive-Vis/</a></p>
+      <p align="center"><img src="pics/QR_code.png" width="420" alt=""></p>
+    </div><style>
+      #qrcode p.url{
+        font-size: 24px;
+        line-height: 1.2em;
+        margin: 20px 0;
+      }
+    </style></section>
+
+    <section id="about-me" class="slide"><div>
+        <h2>About Me</h2>
+        <ul>
+          <li>Master student at <br />
+            Bioinfo &amp; Biostat Core Lab, NTU CGM</li>
+          <li>R / Python. Learn to speak DNA</li>
+          <li>Taiwan R (MLDM) co-organizer</li>
+          <li>PyCon APAC 2014 staff and speaker of
+            <ul>
+              <li><a href="http://blog.liang2.tw/2014-pyR-stat/">Statistics in Python with R</a></li>
+              <li><a href="http://blog.liang2.tw/2014-handy-dist-computing/">Handy Parallel(Distributed)<br>Computing in Python</a></li>
+            </ul>
+          </li>
+        </ul>
+        <img id="protrait" src="pics/me.jpg" alt="">
+      </div>
+      <style>
+        #protrait {
+          position: absolute;
+          right: 120px;
+          top: 120px;
+        }
+      </style>
+    </section>
+
+    <section id="taiwan-r-user" class="slide twocol-ll"><div>
+      <div class="left">
+      <h2 class="tighter">About Taiwan R User Group</h2>
+      <ul>
+        <li>More known a weekly meetup
+          <span class="red">MLDM Monday</span> (<u>M</u>achine <u>L</u>earning and <u>D</u>ata <u>M</u>ining Monday)</li>
+        <li>Topics ranges from
+          <ul>
+            <li><span class="blue">R lang:</span> basic tutorial, Rcpp, quantmod, ggplot2, slidify, knitr, googleVis</li>
+            <li><span class="blue">Statistics, ML/DM:</span> survival analysis, neural network, SVM, regression, nonparam. stat</li>
+            <li><span class="blue">Big Data:</span> Hadoop, MPI</li>
+            <li><span class="blue">PyData:</span> Numpy, Scikit-learn, pandas</li>
+          </ul>
+        </li>
+      </ul>
+      </div><div class="right">
+        <p align="right"><img src="pics/TwR_stat.png" width="80%" alt=""></p>
+      </div>
+    </div></section>
+
+    <section id="agenda" class="slide"><div>
+      <img src="pics/agenda.png" width="60%" alt="">
+      <p>My honor to be the first in this section. This is an introductory talk.</p>
+    </div></section>
+
+    <section id="topic" class="slide"><div>
+      <h2>Topics</h2>
+      <ul>
+        <li>Why interactive?</li>
+        <li>How interactive in R?</li>
+        <li><i class="red">SVG</i> intro</li>
+        <li>Architecture of R graphics system intro</li>
+        <li>R packages <i class="red">grid</i> intro</li>
+        <li><i class="red">gridSVG</i> intro</li>
+        <li>Summary and limitation</li>
+      </ul>
+    </div></section>
+
+    <section id="why-cover" class="slide cover w" ><div>
+        <h2>Why and how?</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #why-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 150px;
+          left: 80px;
+        }
+      </style>
+    </section>
+
+    <section id="move-from-publication" class="slide twocol"><div>
+      <h2>From publication to <i class="red">manipulation</i></h2>
+      <p class="tighter">Demo from <a href="http://timelyportfolio.github.io/gridSVG_intro/">http://timelyportfolio.github.io/gridSVG_intro/</a></p>
+      <div class="left">
+        <img src="pics/ggplot2_d3js.png" width="100%" alt="">
+      </div>
+      <div class="right">
+        <img src="pics/ggplot2_d3js_hover.png" width="100%" alt="">
+      </div>
+    </div></section>
+
+    <section id="why-interactive" class="slide"><div>
+      <h2><span class="red">Why</span> interactive?</h2>
+      <ul>
+        <li class="next">Re-train your model (change the parameters): <i class="blue">Shiny</i></li>
+        <li class="next">Provide more details of your data: <span class="blue">tooltip</span></li>
+        <li class="next">Data are collected in <span class="blue">real time</span></li>
+        <li class="next">Provide different <span class="blue">view point</span> of your data</li>
+        <li class="next">We <i>just</i> want to be <span class="blue">fancy</span></li>
+      </ul>
+      <p class="next">With today's method, we can reveal more details, provide different view points, and can be fancier :)</p>
+    </div></section>
+
+    <section id="how-difficulty" class="slide"><div>
+      <h2><span class="red">How</span> interactive?</h2>
+      <ul>
+        <li>In the past, one might first think of using GUI framework (QT, Gtk): <i class="blue">iPlot</i></li>
+        <li class="next">Real pain for developers,
+          <ul>
+            <li>inexperience in GUI application devel</li>
+            <li>embedded other non-interactive information is hard</li>
+          </ul>
+        </li>
+        <li class="next">Also a pain for users,
+          <ul>
+            <li>no need for another GUI application</li>
+            <li>users now mainly from internet</li>
+          </ul>
+        </li>
+      </ul>
+    </div></section>
+
+    <section id="browser-world" class="slide"><div>
+      <p class="slogan">Web and browsers dominates our front-end world.</p>
+      <p class="next hypo">Almost every PC and mobile have a modern browser today.</p>
+      <p class="next svg">← Hope SVG here someday</p>
+      <img src="pics/web_king.png" alt="">
+    </div><style>
+      #browser-world p.slogan {
+        width: 30%;
+      }
+      #browser-world p.svg {
+        position: absolute;
+        top: 60px;
+        left: 510px;
+      }
+      #browser-world p.hypo {
+        position: absolute;
+        width: 33%;
+        bottom: 170px;
+        right: 40px;
+      }
+
+      #browser-world img {
+        position: absolute;
+        width: 500px;
+        top: 40px;
+        left: 220px;
+      }
+    </style></section>
+
+    <section id="how-r" class="slide"><div>
+      <h2><span class="red">How</span> interactive in R?</h2>
+      <ul>
+        <li>Put everything on web (in the cloud)</li>
+        <li>Use SVG to plot</li>
+        <li>Mainly two ways:
+          <ul>
+            <li>Usual R plots → parse R plot object → output SVG → add interactivity on SVG</li>
+            <li>Use R lang to generate SVG directly</li>
+          </ul>
+        </li>
+      </ul>
+      <p>We take the <span class="blue">first way</span> in this talk.</p>
+    </div></section>
+
+    <section id="why-svg" class="slide"><div>
+      <h2>Why SVG?</h2>
+      <figure>
+        <blockquote>
+          <p>Scalable Vector Graphics (SVG) is an XML markup language for <span class="blue">describing two-dimensional vector graphics</span>.</p>
+        </blockquote>
+        <figcaption>Mozilla Developer Network</figcaption>
+      </figure>
+      <ul>
+        <li>Web standard widely supported by both desktop and mobile browsers</li>
+        <li>Manipulate SVG elements by javascript and CSS; Animation is possible</li>
+        <li>(not in R) most graphic tools can export to SVG</li>
+      </ul>
+    </div></section>
+
+    <section id="svg-cover" class="slide cover w" ><div>
+        <h2>SVG Intro</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #svg-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 180px;
+          left: 80px;
+        }
+      </style>
+    </section>
+
+    <section id="svg-intro" class="slide twocol"><div>
+      <h2 class="tighter">SVG Intro</h2>
+      <p class="tighter">Full intro can be found on <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Mozilla Developer Network</a>.</p>
+      <div class="left">
+      <pre class="language-svg small">
+<code>&lt;svg version="1.1" width="300" height="300"
+  xmlns="http://www.w3.org/2000/svg">
+  &lt;rect x="40" y="30" width="200" height="200" rx="20"
+    fill="red" stroke="black" stroke-width="2" />
+  &lt;rect x="80" y="60" width="200" height="200" rx="40"
+    fill="blue" stroke="black" stroke-width="2"
+    fill-opacity="0.7" />
+&lt;/svg></code></pre>
+      </div>
+      <div class="right">
+        <svg version="1.1" width="300" height="300"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="30" width="200" height="200" rx="20"
+            fill="red" stroke="black" stroke-width="2" />
+          <rect x="80" y="60" width="200" height="200" rx="40"
+            fill="blue" stroke="black" stroke-width="2"
+            fill-opacity="0.7" />
+        </svg>
+      </div>
+    </div><style>
+      #svg-intro svg {
+        position: absolute;
+        right: 100px;
+      }
+    </style></section>
+
+    <section id="svg-basic-element" class="slide twocol"><div>
+      <div class="left">
+        <h2>SVG Basic Elements</h2>
+        <ul>
+          <li>Rectangles: <i class="blue">rect</i></li>
+          <li>Circle: <i class="blue">circle</i></li>
+          <li>Ellipse: <i class="blue">ellipse</i></li>
+          <li>Line: <i class="blue">line</i></li>
+          <li>Polyline: <i class="blue">polyline</i></li>
+          <li>Polygon: <i class="blue">polygon</i></li>
+          <li>Path: <i class="blue">path</i></li>
+          <li>Group: <i class="red">g</i></li>
+        </ul>
+      </div>
+      <div class="right">
+        <h2>Attributes</h2>
+        <ul class="tighter">
+          <li>Position (0, 0) at topleft: <i class="red">x y</i></li>
+          <li>Size: <i class="red">width height</i></li>
+          <li>Stroke (color): <i class="red">stroke stroke-width stroke-opacity</i></li>
+          <li>Fill (color): <i class="red">fill fill-opacity</i></li>
+        </ul>
+        <p class="next">But specify each element one by one is hard.</p>
+      </div>
+    </div></section>
+
+    <section id="svg-style" class="slide twocol"><div>
+      <p class="inline">SVG style can be specified by <span class="red">CSS</span></p>
+      <div class="left">
+        <pre class="language-html small">
+<code>&lt;svg>
+  &lt;rect <mark>class="myrect"</mark> ... />
+  &lt;rect <mark>class="myrect" id="upper"</mark> ... />
+&lt;/svg>&lt;style>
+  .myrect {
+    fill: red;
+    stroke: black; stroke-width: 2px;
+  }
+  #upper {
+    fill: blue; fill-opacity: 0.7;
+  }
+&lt;/style></code>
+        </pre>
+      </div><div class="right">
+        <svg version="1.1" width="300" height="300" profile="full"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect class="myrect" x="40" y="30" width="200" height="200" rx="20" />
+          <rect class="myrect" id="upper" x="80" y="60" width="200" height="200" rx="40" />
+        </svg>
+      </div>
+    <div><style>
+      #svg-style .myrect {
+        fill: red;
+        stroke: black;
+        stroke-width: 2px;
+      }
+      #svg-style #upper {
+        fill: blue;
+        fill-opacity: 0.7;
+      }
+    </style></div></section>
+
+    <section id="svg-css-anime" class="slide twocol"><div>
+      <p class="inline">Use <span class="blue">CSS3 interaction</span> ability</p>
+      <div class="left">
+        <pre class="language-html">
+<code>&lt;style>
+  .myrect:hover {
+    fill: white;
+    stroke: green;
+    stroke-width: 10;
+    transition: 0.75s;
+  }
+&lt;/style></code>
+        </pre>
+      </div><div class="right">
+        <svg version="1.1" width="300" height="300"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect class="myrect" x="40" y="30" width="200" height="200" rx="20" />
+          <rect class="myrect" id="upper" x="80" y="60" width="200" height="200" rx="40" />
+        </svg>
+        <p>So you get an interactive SVG!</p>
+      </div>
+    <div><style>
+      #svg-css-anime .myrect {
+        fill: red;
+        stroke: black;
+        stroke-width: 2px;
+      }
+      #svg-css-anime #upper {
+        fill: blue;
+        fill-opacity: 0.7;
+      }
+      #svg-css-anime .myrect:hover {
+        fill: white;
+        stroke: green;
+        stroke-width: 10;
+        transition: 0.75s;
+      }
+    </style></div></section>
+
+    <section id="svg-sumup" class="slide"><div>
+      <h2>SVG Interaction Summary</h2>
+      <ul>
+        <li>Build SVG plot from basic elements</li>
+        <li>Label elements with class and id name</li>
+        <li>Use CSS and JS to provide interaction or manipulation</li>
+        <li>Embed your figure into a web page. <i>Done</i></li>
+        <li>We don't even need D3.js or other 3rd party tools here!</li>
+        <li>For embedding problem, see <a href="http://www.schepers.cc/svg/blendups/embedding.html">comparison</a> here</li>
+      </ul>
+    </div></section>
+
+    <section id="grid-cover" class="slide cover w" ><div>
+        <h2>grid Intro</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #grid-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 180px;
+          left: 80px;
+        }
+      </style>
+    </section>
+
+    <section id="r-graphics-toolchain" class="slide twocol"><div>
+      <h2>R Graphics Toolchain</h2>
+      <div class="left">
+        <ul>
+          <li>Adapted from <a href="https://sjp.co.nz/projects/gridsvg/">gridSVG project page</a></li>
+          <li>Today we focus on ggplot2 here</li>
+          <li>ggplot2 builds on top of <i class="blue">grid</i></li>
+          <li>To export to SVG, one can through either
+            <ul>
+              <li>native <i class="blue">grDevices</i></li>
+              <li><i class="blue">gridSVG</i></li>
+            </ul>
+          </li>
+        </ul>
+      </div><div class="right">
+        <img src="pics/R_graphics_toolchain.png" width="100%" alt="">
+      </div>
+    </div></section>
+
+    <section id="grid-intro" class="slide"><div>
+      <h2>What's <i class="red">grid</i></h2>
+      <ul>
+        <li>We stress two main component today:
+          <ul>
+            <li>Viewpoint (somewhat like <i class="blue">g</i> of SVG)</li>
+            <li>Plotting elements (e.g., points, rect, text)</li>
+          </ul>
+        </li>
+        <li>Every viewpoint has its coordinate system</li>
+        <li>Viewpoint is buttom-up but g is top-down</li>
+      </ul>
+      <p>Show the concept by a quick demo.</p>
+    </div></section>
+
+    <section id="grid-demo" class="slide twocol-ll"><div>
+      <div class="left">
+       <pre class="language-r small">
+<code>library(grid)
+grid.newpage()
+pushViewport(plotViewport(c(5, 4, 2, 2)))
+pushViewport(dataViewport(
+  pressure$temperature, pressure$pressure,
+  name="plotRegion"
+))
+grid.points(
+  pressure$temperature, pressure$pressure,
+  name="dataSymbols"
+)  # upper figure
+
+grid.rect(gp=gpar(fill=0))
+grid.xaxis()
+grid.yaxis()  # lower figure</code>
+        </pre>
+      </div><div class="right">
+        <img src="pics/grid_step1.svg" alt="">
+        <img src="pics/grid_step2.svg" alt="">
+      </div>
+    </div><style>
+      #grid-demo img {
+        width: 250px;
+        border: 2px solid #0376A6;
+      }
+    </style></section>
+
+     <section id="grid-demo-contd" class="slide twocol-ll"><div>
+      <div class="left">
+       <pre class="language-r small">
+<code>grid.edit("dataSymbols", pch=10)
+upViewport(1)  # inner
+grid.rect(gp=gpar(lty="dashed", fill=0))
+upViewport(1)  # outer
+grid.rect(gp=gpar(lty="dotted", fill=0))
+# upper plot
+
+downViewport("plotRegion")
+grid.text(
+  "Pressure (mm Hg)\nversus\nTemperature (Celsius)",
+  just="right",
+  x=unit(250, "native"), y=unit(600, "native")
+)
+# lower plot</code>
+        </pre>
+      </div><div class="right">
+        <img src="pics/grid_step3.svg" alt="">
+        <img src="pics/grid_step4.svg" alt="">
+      </div>
+    </div><style>
+      #grid-demo-contd img {
+        width: 250px;
+        border: 2px solid #0376A6;
+      }
+    </style></section>
+
+    <section id="ggplot2-svg" class="slide"><div>
+      <h2>ggplot2 to SVG</h2>
+    </div></section>
+
+   <section id="r-gaphics-book" class="slide twocol-ll"><div>
+      <h2>Further Reading</h2>
+      <div class="left">
+        <ul>
+          <li>Cannot not fully cover <i class="blue">grid</i> today</li>
+          <li>Follow <i><b>R Graphics</b> 2nd, Paul Murrel</i></li>
+          <li>Detailed illustration about traditional R plotting functions, grid system, lattice and ggplot2</li>
+        </ul>
+      </div><div class="right">
+        <img src="pics/R_graphics_book.jpg" width="100%" alt="">
+      </div>
+    </div></section>
+
+    <!-- TODO Draft -->
+    <!--
+      - Generate an interactive SVG directly
+        - ggvis (same grammar as ggplot2, intro by Hadley)
+        - googleVis
+        - recharts
+        - rCharts
+      - gridSVG intro
+        - how it works
+        - limitation
+        - http://glimmer.rstudio.com/timelyportfolio/shiny-grid-svg-v2/
+      - Summary
+        - Why in R?
+          - comfort zone
+        - Why not in R?
+          - mainly deal with javascript, HTML, SVG, CSS
+          - not R itself
+          - even if they can be produced easily from R, for better tweaking one still needs knowledge about front-end world
+    -->
+
+    <!-- End Slide -->
+    <section id='end' class='slide cover shout w'><div>
+        <h2>Thank You!</h2>
+        <img src="pics/end.jpg" alt="">
+      </div>
+      <style>
+        #end h2 {
+          position: absolute;
+          text-align: left;
+          top: 300px;
+          left: 50px;
+          color: #0376A6;
+          font-size: 92px;
+          opacity: 0.9;
+        }
+    </style></section>
+
+    <!-- END OF SLIDE CONTENT -->
+    <p class="badge"><a href="https://gitcafe.com/ccwang002/ChinaRConf-Interactive-Vis" target="_blank">Fork me on GitCafe</a></p>
+    <div class="progress"><div></div></div>
+
+    <!-- Library -->
+    <script src="lib/highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script src="lib/shower/shower.min.js"></script>
+    <!-- Mathjax -->
+    <!-- During local development, use localhost mathjax for speed-->
+    <!--<script src="file:///Users/liang/.ipython/profile_default/static/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+    <!-- online Mathjax CDN -->
+    <!--
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    -->
+  </body>
+</html>
