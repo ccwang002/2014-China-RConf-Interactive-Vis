@@ -239,14 +239,19 @@
       </div>
     </div></section>
 
+    <section id="agenda" class="slide"><div>
+      <img src="pics/agenda.png" width="60%" alt="">
+      <p>My honor to be the first in this section. This is an introductory talk.</p>
+    </div></section>
+
     <section id="topic" class="slide"><div>
       <h2>Topics</h2>
       <ul>
         <li>Why interactive?</li>
         <li>How interactive in R?</li>
         <li><i class="red">SVG</i> intro</li>
-        <li>R packages <i class="red">grid</i> intro</li>
         <li>Architecture of R graphics system intro</li>
+        <li>R packages <i class="red">grid</i> intro</li>
         <li><i class="red">gridSVG</i> intro</li>
         <li>Summary and limitation</li>
       </ul>
@@ -315,8 +320,8 @@
 
     <section id="browser-world" class="slide"><div>
       <p class="slogan">Web and browsers dominates our front-end world.</p>
-      <p class="next svg">← Hope SVG here someday</p>
       <p class="next hypo">Almost every PC and mobile have a modern browser today.</p>
+      <p class="next svg">← Hope SVG here someday</p>
       <img src="pics/web_king.png" alt="">
     </div><style>
       #browser-world p.slogan {
@@ -342,8 +347,8 @@
       }
     </style></section>
 
-    <section id="how-revisit" class="slide"><div>
-      <h2><span class="red">How</span> interactive in R? (revisit)</h2>
+    <section id="how-r" class="slide"><div>
+      <h2><span class="red">How</span> interactive in R?</h2>
       <ul>
         <li>Put everything on web (in the cloud)</li>
         <li>Use SVG to plot</li>
@@ -367,8 +372,8 @@
       </figure>
       <ul>
         <li>Web standard widely supported by both desktop and mobile browsers</li>
-        <li>Manipulate SVG elements by javascript and CSS</li>
-        <li>Support sufficient annimations</li>
+        <li>Manipulate SVG elements by javascript and CSS; Animation is possible</li>
+        <li>(not in R) most graphic tools can export to SVG</li>
       </ul>
     </div></section>
 
@@ -385,11 +390,155 @@
           line-height: 1.2em;
           opacity: 0.8;
           position: absolute;
-          top: 150px;
+          top: 180px;
           left: 80px;
         }
       </style>
     </section>
+
+    <section id="svg-intro" class="slide twocol"><div>
+      <h2 class="tighter">SVG Intro</h2>
+      <p class="tighter">Full intro can be found on <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Mozilla Developer Network</a>.</p>
+      <div class="left">
+      <pre class="language-svg small">
+<code>&lt;svg version="1.1" width="300" height="300"
+  xmlns="http://www.w3.org/2000/svg">
+  &lt;rect x="40" y="30" width="200" height="200" rx="20"
+    fill="red" stroke="black" stroke-width="2" />
+  &lt;rect x="80" y="60" width="200" height="200" rx="40"
+    fill="blue" stroke="black" stroke-width="2"
+    fill-opacity="0.7" />
+&lt;/svg></code></pre>
+      </div>
+      <div class="right">
+        <svg version="1.1" width="300" height="300"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="30" width="200" height="200" rx="20"
+            fill="red" stroke="black" stroke-width="2" />
+          <rect x="80" y="60" width="200" height="200" rx="40"
+            fill="blue" stroke="black" stroke-width="2"
+            fill-opacity="0.7" />
+        </svg>
+      </div>
+    </div><style>
+      #svg-intro svg {
+        position: absolute;
+        right: 100px;
+      }
+    </style></section>
+
+    <section id="svg-basic-element" class="slide twocol"><div>
+      <div class="left">
+        <h2>SVG Basic Elements</h2>
+        <ul>
+          <li>Rectangles: <i class="blue">rect</i></li>
+          <li>Circle: <i class="blue">circle</i></li>
+          <li>Ellipse: <i class="blue">ellipse</i></li>
+          <li>Line: <i class="blue">line</i></li>
+          <li>Polyline: <i class="blue">polyline</i></li>
+          <li>Polygon: <i class="blue">polygon</i></li>
+          <li>Path: <i class="blue">path</i></li>
+          <li>Group: <i class="red">g</i></li>
+        </ul>
+      </div>
+      <div class="right">
+        <h2>Attributes</h2>
+        <ul class="tighter">
+          <li>Position (0, 0) at topleft: <i class="red">x y</i></li>
+          <li>Size: <i class="red">width height</i></li>
+          <li>Stroke (color): <i class="red">stroke stroke-width stroke-opacity</i></li>
+          <li>Fill (color): <i class="red">fill fill-opacity</i></li>
+        </ul>
+        <p class="next">But specify each element one by one is hard.</p>
+      </div>
+    </div></section>
+
+    <section id="svg-style" class="slide twocol"><div>
+      <p class="inline">SVG style can be specified by <span class="red">CSS</span></p>
+      <div class="left">
+        <pre class="language-html small">
+<code>&lt;svg>
+  &lt;rect <mark>class="myrect"</mark> ... />
+  &lt;rect <mark>class="myrect" id="upper"</mark> ... />
+&lt;/svg>&lt;style>
+  .myrect {
+    fill: red;
+    stroke: black; stroke-width: 2px;
+  }
+  #upper {
+    fill: blue; fill-opacity: 0.7;
+  }
+&lt;/style></code>
+        </pre>
+      </div><div class="right">
+        <svg version="1.1" width="300" height="300" profile="full"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect class="myrect" x="40" y="30" width="200" height="200" rx="20" />
+          <rect class="myrect" id="upper" x="80" y="60" width="200" height="200" rx="40" />
+        </svg>
+      </div>
+    <div><style>
+      #svg-style .myrect {
+        fill: red;
+        stroke: black;
+        stroke-width: 2px;
+      }
+      #svg-style #upper {
+        fill: blue;
+        fill-opacity: 0.7;
+      }
+    </style></div></section>
+
+    <section id="svg-css-anime" class="slide twocol"><div>
+      <p class="inline">Use <span class="blue">CSS3 interaction</span> ability</p>
+      <div class="left">
+        <pre class="language-html">
+<code>&lt;style>
+  .myrect:hover {
+    fill: white;
+    stroke: green;
+    stroke-width: 10;
+    transition: 0.75s;
+  }
+&lt;/style></code>
+        </pre>
+      </div><div class="right">
+        <svg version="1.1" width="300" height="300"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect class="myrect" x="40" y="30" width="200" height="200" rx="20" />
+          <rect class="myrect" id="upper" x="80" y="60" width="200" height="200" rx="40" />
+        </svg>
+        <p>So you get an interactive SVG!</p>
+      </div>
+    <div><style>
+      #svg-css-anime .myrect {
+        fill: red;
+        stroke: black;
+        stroke-width: 2px;
+      }
+      #svg-css-anime #upper {
+        fill: blue;
+        fill-opacity: 0.7;
+      }
+      #svg-css-anime .myrect:hover {
+        fill: white;
+        stroke: green;
+        stroke-width: 10;
+        transition: 0.75s;
+      }
+    </style></div></section>
+
+    <section id="svg-sumup" class="slide"><div>
+      <h2>SVG Interaction Summary</h2>
+      <ul>
+        <li>Build SVG plot from basic elements</li>
+        <li>Label elements with class and id name</li>
+        <li>Use CSS and JS to provide interaction or manipulation</li>
+        <li>Embed your figure into a web page. <i>Done</i></li>
+        <li>We don't even need D3.js or other 3rd party tools here!</li>
+        <li>For embedding problem, see <a href="http://www.schepers.cc/svg/blendups/embedding.html">comparison</a> here</li>
+      </ul>
+    </div></section>
 
     <!-- TODO Draft -->
     <!--
@@ -401,7 +550,6 @@
         - googleVis
         - recharts
         - rCharts
-    - SVG intro
     - SVG interactive
       - make SVG interactive
       - embed interactive SVG plots
