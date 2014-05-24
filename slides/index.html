@@ -273,11 +273,12 @@
 
     <section id="move-from-publication" class="slide twocol"><div>
       <h2>From publication to <i class="red">manipulation</i></h2>
+      <p class="tighter">Demo from <a href="http://timelyportfolio.github.io/gridSVG_intro/">http://timelyportfolio.github.io/gridSVG_intro/</a></p>
       <div class="left">
-        <!-- scatter plot -->
+        <img src="pics/ggplot2_d3js.png" width="100%" alt="">
       </div>
       <div class="right">
-        <!-- tooltip label -->
+        <img src="pics/ggplot2_d3js_hover.png" width="100%" alt="">
       </div>
     </div></section>
 
@@ -313,19 +314,39 @@
     </div></section>
 
     <section id="browser-world" class="slide"><div>
-      <p>Internet browsers dominate the whole world :)</p>
-      <!-- img here -->
-    </div></section>
+      <p class="slogan">Web and browsers dominates our front-end world.</p>
+      <p class="next svg">← Hope SVG here someday</p>
+      <p class="next hypo">Almost every PC and mobile have a modern browser today.</p>
+      <img src="pics/web_king.png" alt="">
+    </div><style>
+      #browser-world p.slogan {
+        width: 30%;
+      }
+      #browser-world p.svg {
+        position: absolute;
+        top: 60px;
+        left: 510px;
+      }
+      #browser-world p.hypo {
+        position: absolute;
+        width: 33%;
+        bottom: 170px;
+        right: 40px;
+      }
 
-    <section id="web-world" class="slide"><div>
-      <p>HTML5/CSS3/Javascript/SVG dominate the front-end world :)</p>
-      <!-- img here -->
-    </div></section>
+      #browser-world img {
+        position: absolute;
+        width: 500px;
+        top: 40px;
+        left: 220px;
+      }
+    </style></section>
 
     <section id="how-revisit" class="slide"><div>
       <h2><span class="red">How</span> interactive in R? (revisit)</h2>
       <ul>
         <li>Put everything on web (in the cloud)</li>
+        <li>Use SVG to plot</li>
         <li>Mainly two ways:
           <ul>
             <li>Usual R plots → parse R plot object → output SVG → add interactivity on SVG</li>
@@ -351,11 +372,27 @@
       </ul>
     </div></section>
 
+    <section id="svg-cover" class="slide cover w" ><div>
+        <h2>SVG Intro</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #svg-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 150px;
+          left: 80px;
+        }
+      </style>
+    </section>
 
     <!-- TODO Draft -->
     <!--
-      - How interactive in R?
-      - R plot object to SVG
       - SVG to interactive SVG
         - SVG is well cross-platform
         - generate SVG from different plot engine
@@ -363,6 +400,7 @@
         - ggvis (same grammar as ggplot2, intro by Hadley)
         - googleVis
         - recharts
+        - rCharts
     - SVG intro
     - SVG interactive
       - make SVG interactive
@@ -374,6 +412,7 @@
    - gridSVG intro
       - how it works
       - limitation
+      - http://glimmer.rstudio.com/timelyportfolio/shiny-grid-svg-v2/
     - Summary
       - Why in R?
         - comfort zone
