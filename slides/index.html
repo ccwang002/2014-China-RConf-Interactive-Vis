@@ -540,19 +540,138 @@
       </ul>
     </div></section>
 
+    <section id="grid-cover" class="slide cover w" ><div>
+        <h2>grid Intro</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #grid-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 180px;
+          left: 80px;
+        }
+      </style>
+    </section>
+
+    <section id="r-graphics-toolchain" class="slide twocol"><div>
+      <h2>R Graphics Toolchain</h2>
+      <div class="left">
+        <ul>
+          <li>Adapted from <a href="https://sjp.co.nz/projects/gridsvg/">gridSVG project page</a></li>
+          <li>Today we focus on ggplot2 here</li>
+          <li>ggplot2 builds on top of <i class="blue">grid</i></li>
+          <li>To export to SVG, one can through either
+            <ul>
+              <li>native <i class="blue">grDevices</i></li>
+              <li><i class="blue">gridSVG</i></li>
+            </ul>
+          </li>
+        </ul>
+      </div><div class="right">
+        <img src="pics/R_graphics_toolchain.png" width="100%" alt="">
+      </div>
+    </div></section>
+
+    <section id="grid-intro" class="slide"><div>
+      <h2>What's <i class="red">grid</i></h2>
+      <ul>
+        <li>We stress two main component today:
+          <ul>
+            <li>Viewpoint (somewhat like <i class="blue">g</i> of SVG)</li>
+            <li>Plotting elements (e.g., points, rect, text)</li>
+          </ul>
+        </li>
+        <li>Every viewpoint has its coordinate system</li>
+        <li>Viewpoint is buttom-up but g is top-down</li>
+      </ul>
+      <p>Show the concept by a quick demo.</p>
+    </div></section>
+
+    <section id="grid-demo" class="slide twocol-ll"><div>
+      <div class="left">
+       <pre class="language-r small">
+<code>library(grid)
+grid.newpage()
+pushViewport(plotViewport(c(5, 4, 2, 2)))
+pushViewport(dataViewport(
+  pressure$temperature, pressure$pressure,
+  name="plotRegion"
+))
+grid.points(
+  pressure$temperature, pressure$pressure,
+  name="dataSymbols"
+)  # upper figure
+
+grid.rect(gp=gpar(fill=0))
+grid.xaxis()
+grid.yaxis()  # lower figure</code>
+        </pre>
+      </div><div class="right">
+        <img src="pics/grid_step1.svg" alt="">
+        <img src="pics/grid_step2.svg" alt="">
+      </div>
+    </div><style>
+      #grid-demo img {
+        width: 250px;
+        border: 2px solid #0376A6;
+      }
+    </style></section>
+
+     <section id="grid-demo-contd" class="slide twocol-ll"><div>
+      <div class="left">
+       <pre class="language-r small">
+<code>grid.edit("dataSymbols", pch=10)
+upViewport(1)  # inner
+grid.rect(gp=gpar(lty="dashed", fill=0))
+upViewport(1)  # outer
+grid.rect(gp=gpar(lty="dotted", fill=0))
+# upper plot
+
+downViewport("plotRegion")
+grid.text(
+  "Pressure (mm Hg)\nversus\nTemperature (Celsius)",
+  just="right",
+  x=unit(250, "native"), y=unit(600, "native")
+)
+# lower plot</code>
+        </pre>
+      </div><div class="right">
+        <img src="pics/grid_step3.svg" alt="">
+        <img src="pics/grid_step4.svg" alt="">
+      </div>
+    </div><style>
+      #grid-demo-contd img {
+        width: 250px;
+        border: 2px solid #0376A6;
+      }
+    </style></section>
+
+   <section id="r-gaphics-book" class="slide twocol-ll"><div>
+      <h2>Further Reading</h2>
+      <div class="left">
+        <ul>
+          <li>Cannot not fully cover <i class="blue">grid</i> today</li>
+          <li>Follow <i><b>R Graphics</b> 2nd, Paul Murrel</i></li>
+          <li>Detailed illustration about traditional R plotting functions, grid system, lattice and ggplot2</li>
+        </ul>
+      </div><div class="right">
+        <img src="pics/R_graphics_book.jpg" width="100%" alt="">
+      </div>
+    </div></section>
+
     <!-- TODO Draft -->
     <!--
-      - SVG to interactive SVG
-        - SVG is well cross-platform
-        - generate SVG from different plot engine
       - Generate an interactive SVG directly
         - ggvis (same grammar as ggplot2, intro by Hadley)
         - googleVis
         - recharts
         - rCharts
-    - SVG interactive
-      - make SVG interactive
-      - embed interactive SVG plots
     - R graphics arch
     - grid intro
       - basic elements
