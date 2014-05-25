@@ -652,11 +652,7 @@ grid.text(
       }
     </style></section>
 
-    <section id="ggplot2-svg" class="slide"><div>
-      <h2>ggplot2 to SVG</h2>
-    </div></section>
-
-   <section id="r-gaphics-book" class="slide twocol-ll"><div>
+    <section id="r-gaphics-book" class="slide twocol-ll"><div>
       <h2>Further Reading</h2>
       <div class="left">
         <ul>
@@ -669,6 +665,67 @@ grid.text(
       </div>
     </div></section>
 
+   <section id="ggplot2-direct" class="slide"><div>
+      <h2>ggplot2 to SVG</h2>
+      <p class="tighter">Using <i class="red">grid</i> to export to SVG is just a filename away.</p>
+      <pre class="language-r">
+<code>require("ggplot2")
+g <- qplot(clarity, data=diamonds, fill=cut, geom="bar")
+<mark>ggsave(file="ggplot2_direct.svg",</mark>
+       plot=g, width=10, height=8)</code>
+      </pre>
+    </div></section>
+
+    <section id="ggplot2-direct-result" class="slide twocol-ll"><div>
+      <p class="inline">Direct SVG Result</p>
+      <div class="left">
+        <img src="pics/ggplot2_direct.svg" width="100%" alt="">
+      </div><div class="right">
+        <ul>
+          <li>Work like a charm</li>
+          <li>Convert all words into outline</li>
+          <li>Generated SVG loses original grid structure</li>
+          <li>Hacking this SVG is slightly harder</li>
+        </ul>
+      </div>
+    </div></section>
+
+     <section id="gridSVG-cover" class="slide cover w" ><div>
+        <h2>gridSVG Intro</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #gridSVG-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 180px;
+          left: 80px;
+        }
+      </style>
+    </section>
+
+    <section id="gridSVG-intro" class="slide"><div>
+      <h2><i class="red">girdSVG</i> Intro</h2>
+      <ul class="tighter">
+        <li>gridSVG parse the grid structure then export to SVG directly</li>
+        <li>Also, it provides some helper function to create animation</li>
+        <li>Demo from <a href="http://timelyportfolio.github.io/gridSVG_intro/">gridSVG intro</a></li>
+      </ul>
+      <pre class="language-r">
+<code>g <- ggplot(...) + ...
+g.svg <- grid.export("demo.svg", addClasses=TRUE)</code>
+      </pre>
+    </div></section>
+
+    <section id="gridSVG-result" class="slide twocol-ll"><div>
+      <p class="inline">(The text is selectable)</p>
+      <iframe width="600px" height="450px" src="pics/gridSVG_demo.svg" frameborder="0"></iframe>
+    </div></section>
     <!-- TODO Draft -->
     <!--
       - Generate an interactive SVG directly

@@ -24,4 +24,4 @@ require(XML)
 g4
 #export to SVG file and R object
 #grid.export deprecates the older gridToSVG
-g4.svg <- grid.export("plot1.svg",addClasses=TRUE)
+g4.svg <- grid.export("plot1.svg", addClasses=TRUE)
