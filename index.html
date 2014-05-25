@@ -290,11 +290,11 @@
     <section id="why-interactive" class="slide"><div>
       <h2><span class="red">Why</span> interactive?</h2>
       <ul>
-        <li class="next">Re-train your model (change the parameters): <i class="blue">Shiny</i></li>
-        <li class="next">Provide more details of your data: <span class="blue">tooltip</span></li>
-        <li class="next">Data are collected in <span class="blue">real time</span></li>
-        <li class="next">Provide different <span class="blue">view point</span> of your data</li>
-        <li class="next">We <i>just</i> want to be <span class="blue">fancy</span></li>
+        <li>Re-train your model (change the parameters): <i class="blue">Shiny</i></li>
+        <li>Provide more details of your data: <span class="blue">tooltip</span></li>
+        <li>Data are collected in <span class="blue">real time</span></li>
+        <li>Provide different <span class="blue">view point</span> of your data</li>
+        <li>We <i>just</i> want to be <span class="blue">fancy</span></li>
       </ul>
       <p class="next">With today's method, we can reveal more details, provide different view points, and can be fancier :)</p>
     </div></section>
@@ -652,11 +652,7 @@ grid.text(
       }
     </style></section>
 
-    <section id="ggplot2-svg" class="slide"><div>
-      <h2>ggplot2 to SVG</h2>
-    </div></section>
-
-   <section id="r-gaphics-book" class="slide twocol-ll"><div>
+    <section id="r-gaphics-book" class="slide twocol-ll"><div>
       <h2>Further Reading</h2>
       <div class="left">
         <ul>
@@ -669,25 +665,113 @@ grid.text(
       </div>
     </div></section>
 
-    <!-- TODO Draft -->
-    <!--
-      - Generate an interactive SVG directly
-        - ggvis (same grammar as ggplot2, intro by Hadley)
-        - googleVis
-        - recharts
-        - rCharts
-      - gridSVG intro
-        - how it works
-        - limitation
-        - http://glimmer.rstudio.com/timelyportfolio/shiny-grid-svg-v2/
-      - Summary
-        - Why in R?
-          - comfort zone
-        - Why not in R?
-          - mainly deal with javascript, HTML, SVG, CSS
-          - not R itself
-          - even if they can be produced easily from R, for better tweaking one still needs knowledge about front-end world
-    -->
+   <section id="ggplot2-direct" class="slide"><div>
+      <h2>ggplot2 to SVG</h2>
+      <p class="tighter">Using <i class="red">grid</i> to export to SVG is just a filename away.</p>
+      <pre class="language-r">
+<code>require("ggplot2")
+g <- qplot(clarity, data=diamonds, fill=cut, geom="bar")
+<mark>ggsave(file="ggplot2_direct.svg",</mark>
+       plot=g, width=10, height=8)</code>
+      </pre>
+    </div></section>
+
+    <section id="ggplot2-direct-result" class="slide twocol-ll"><div>
+      <p class="inline">Direct SVG Result</p>
+      <div class="left">
+        <img src="pics/ggplot2_direct.svg" width="100%" alt="">
+      </div><div class="right">
+        <ul>
+          <li>Work like a charm</li>
+          <li>Convert all words into outline</li>
+          <li>Generated SVG loses original grid structure</li>
+          <li>Hacking this SVG is slightly harder</li>
+        </ul>
+      </div>
+    </div></section>
+
+    <section id="gridSVG-intro" class="slide"><div>
+      <h2><i class="red">girdSVG</i> Intro</h2>
+      <ul class="tighter">
+        <li>gridSVG parse the grid structure then export to SVG directly</li>
+        <li>Also, it provides some helper function to create animation</li>
+        <li>Demo from <a href="http://timelyportfolio.github.io/gridSVG_intro/">gridSVG intro</a></li>
+        <li>More examples hosted on <a href="http://glimmer.rstudio.com/timelyportfolio/shiny-grid-svg-v2/">Shiny by timelyportfolio</a></li>
+      </ul>
+      <pre class="language-r">
+<code>g <- ggplot(...) + ...  # plot your ggplot2 here
+g.svg <- grid.export("demo.svg", addClasses=TRUE)</code>
+      </pre>
+    </div></section>
+
+    <section id="gridSVG-result" class="slide twocol-ll"><div>
+      <p class="inline">(The text is selectable)</p>
+      <iframe width="600px" height="450px" src="pics/gridSVG_demo.svg" frameborder="0"></iframe>
+    </div></section>
+
+     <section id="summary-cover" class="slide cover w" ><div>
+        <h2>Summary</h2>
+        <img src="pics/mid.jpg" alt="">
+      </div>
+      <style>
+        #summary-cover h2 {
+          margin: 0px 0 0px;
+          color: #D91A3C;
+          text-align: left;
+          font-size: 100px;
+          line-height: 1.2em;
+          opacity: 0.8;
+          position: absolute;
+          top: 180px;
+          left: 80px;
+        }
+      </style>
+    </section>
+
+    <section id="svg-today" class="slide"><div>
+      <h2>Our try on interactive visualization is ...</h2>
+      <ul>
+        <li class="next">Make SVG in R the hard way : )</li>
+        <li class="next">Utilize ordinal R(ggplot2, lattice) plots</li>
+        <li class="next">And make SVG interactive by hand adding custom CSS and JS</li>
+        <li class="next">Pretty much based on our knowledge about CSS and JS</li>
+      </ul>
+      <p class="next">Like this approach?</p>
+    </div></section>
+
+    <section id="today-limit" class="slide"><div>
+      <h2>Limitation of this approach</h2>
+      <ul class="tighter">
+        <li>We are dealing with the <i class="blue">front-end</i></li>
+        <li>Not R itself and use lots of HTML, CSS, JS, SVG</li>
+        <li>It is <i class="blue">hard</i>. Harder when you are dealing with chinese text</li>
+        <li>However, after our hands being dirty, we learn some fundamental architecture for R graphics</li>
+        <li>What's <i class="red">next</i>?</li>
+      </ul>
+      <p class="next">We mentioned two ways about interactive visualization in R.</p>
+    </div></section>
+
+    <section id="whats-next" class="slide"><div>
+      <h2>Generate an interactive R plot <span class="blue">directly</span></h2>
+      <p class="tighter">Package-dependent implementation.<br>All generates R plots through HTML, SVG, JS, CSS.</p>
+      <ul>
+        <li><span class="red">rCharts</span>: provide lattice-like interface</li>
+        <li><span class="red">googleVis</span>: communicate with Google Chart API</li>
+        <li><span class="red">recharts</span>: R interface to ECharts for data visualization</li>
+        <li><span class="red">ggvis</span>: next-generation ggplot2 based on JS lib <i class="blue">Vega</i>, also facilitates HTML5 Canvas</li>
+      </ul>
+    </div></section>
+
+    <section id="take-home-msg" class="slide"><div>
+      <h2>Take home message</h2>
+      <ul>
+        <li>Do interactive visualization on web</li>
+        <li>How to write SVG on our own</li>
+        <li>Get some insight about R graphics ecosystem</li>
+        <li>Turn current <i>grid</i>-based R plots into SVG</li>
+        <li>Future</li>
+      </ul>
+    </div></section>
 
     <!-- End Slide -->
     <section id='end' class='slide cover shout w'><div>
