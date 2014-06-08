@@ -477,7 +477,7 @@
           <rect class="myrect" id="upper" x="80" y="60" width="200" height="200" rx="40" />
         </svg>
       </div>
-    <div><style>
+    </div><style>
       #svg-style .myrect {
         fill: red;
         stroke: black;
@@ -487,7 +487,7 @@
         fill: blue;
         fill-opacity: 0.7;
       }
-    </style></div></section>
+    </style></section>
 
     <section id="svg-css-anime" class="slide twocol"><div>
       <p class="inline">Use <span class="blue">CSS3 interaction</span> ability</p>
@@ -506,17 +506,17 @@
         <svg version="1.1" width="300" height="300"
           xmlns="http://www.w3.org/2000/svg">
           <rect class="myrect" x="40" y="30" width="200" height="200" rx="20" />
-          <rect class="myrect" id="upper" x="80" y="60" width="200" height="200" rx="40" />
+          <rect class="myrect upper" x="80" y="60" width="200" height="200" rx="40" />
         </svg>
         <p>So you get an interactive SVG!</p>
       </div>
-    <div><style>
+    </div><style>
       #svg-css-anime .myrect {
         fill: red;
         stroke: black;
         stroke-width: 2px;
       }
-      #svg-css-anime #upper {
+      #svg-css-anime .upper {
         fill: blue;
         fill-opacity: 0.7;
       }
@@ -526,7 +526,7 @@
         stroke-width: 10;
         transition: 0.75s;
       }
-    </style></div></section>
+    </style></section>
 
     <section id="svg-sumup" class="slide"><div>
       <h2>SVG Interaction Summary</h2>
@@ -706,7 +706,7 @@ g.svg <- grid.export("demo.svg", addClasses=TRUE)</code>
 
     <section id="gridSVG-result" class="slide twocol-ll"><div>
       <p class="inline">(The text is selectable)</p>
-      <iframe width="600px" height="450px" src="pics/gridSVG_demo.svg" frameborder="0"></iframe>
+      <iframe width="600" height="450" src="pics/gridSVG_demo.svg" frameborder="0"></iframe>
     </div></section>
 
      <section id="summary-cover" class="slide cover w" ><div>
